@@ -1,0 +1,45 @@
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe.config
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.pdb
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.Form1.resources
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.Properties.Resources.resources
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.exe
+C:\Users\admin\Desktop\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.pdb
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe.config
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.exe
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.pdb
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.pdb
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csprojResolveAssemblyReference.cache
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.frmCS.resources
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.Properties.Resources.resources
+F:\软件\WinForm\丽萍\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csproj.GenerateResource.Cache
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe.config
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.exe
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.pdb
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.pdb
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csprojResolveAssemblyReference.cache
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.frmCS.resources
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.Properties.Resources.resources
+F:\自制外挂\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csproj.GenerateResource.Cache
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe.config
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.exe
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.pdb
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.pdb
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csprojResolveAssemblyReference.cache
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.frmCS.resources
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.Properties.Resources.resources
+F:\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csproj.GenerateResource.Cache
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe.config
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.exe
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.pdb
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.exe
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\bin\Debug\CS1.6自制修改器.pdb
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csprojResolveAssemblyReference.cache
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.frmCS.resources
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1._6自制修改器.Properties.Resources.resources
+F:\软件\Create myself\CS1.6自制修改器\CS1.6自制修改器\obj\Debug\CS1.6自制修改器.csproj.GenerateResource.Cache
