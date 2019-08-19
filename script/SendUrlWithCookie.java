@@ -40,7 +40,7 @@ public class SendUrlWithCookie {
 			conn.setDoOutput(true);// 使用 URL 连接进行输出，则将 DoOutput标志设置为 true
 
 			//从google浏览器请求地址中的cookie里面找到这个
-			conn.setRequestProperty("Cookie", "3AB9D23F7A4B3C9B=XZSSWP2Q3RX2R3TI7LSWZPFRA2TTGEAR722LFGFUBN4HEXTW7VNGZXMWZJRSRLTJJANSNXLSSA26TPA5HUCXOUBHUY");
+			conn.setRequestProperty("Cookie", "3AB9D23F7A4B3C9B=");
 			conn.addRequestProperty("Cookie", "Hm_lpvt_f16aaeb7ee42409d8dbeb6bf131c5f2a=1512743276");
 			conn.addRequestProperty("Cookie", "Hm_lvt_f16aaeb7ee42409d8dbeb6bf131c5f2a=1512707344,1512712994,1512743276");
 			conn.addRequestProperty("Cookie", "JSESSIONID=1995.s1");
