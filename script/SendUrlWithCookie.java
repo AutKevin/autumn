@@ -20,6 +20,7 @@ public class SendUrlWithCookie {
 		//while (true) {
 			try {
 				System.out.println(sendPostByUrl(url,"get",null));
+                		Thread.sleep(3000);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -40,28 +41,11 @@ public class SendUrlWithCookie {
 			conn.setDoOutput(true);// 使用 URL 连接进行输出，则将 DoOutput标志设置为 true
 
 			//从google浏览器请求地址中的cookie里面找到这个
-			conn.setRequestProperty("Cookie", "3AB9D23F7A4B3C9B=");
-			conn.addRequestProperty("Cookie", "Hm_lpvt_f16aaeb7ee42409d8dbeb6bf131c5f2a=1512743276");
-			conn.addRequestProperty("Cookie", "Hm_lvt_f16aaeb7ee42409d8dbeb6bf131c5f2a=1512707344,1512712994,1512743276");
-			conn.addRequestProperty("Cookie", "JSESSIONID=1995.s1");
-			conn.addRequestProperty("Cookie", "__jda=122270672.365496518.1506901025.1512740467.1512742747.8");
-			conn.addRequestProperty("Cookie", "__jdb=122270672.9.365496518|8.1512742747");
-			conn.addRequestProperty("Cookie", "__jdc=122270672");
-			conn.addRequestProperty("Cookie", "__jdu=365496518");
-			conn.addRequestProperty("Cookie", "__jdv=122270672|baidu-pinzhuan|t_288551095_baidupinzhuan|cpc|0f3d30c8dba7459bb52f2eb5eba8ac7d_0_812205e2240f4ed28d29b6a26cfb27e4|1512743192207");
-			conn.addRequestProperty("Cookie", "_pst=%E7%A7%8B%E5%A4%9C%E9%9B%A8%E5%B7%B7Q");
-			conn.addRequestProperty("Cookie", "_tp=GyDDW8HjsKYh2lOdBa7v9c2s0T0C83lTUP3L%2FYa%2F%2BWSsZ7XSsWQ4WGIx7zcBiYYv");
-			conn.addRequestProperty("Cookie", "areaId=12");
-			conn.addRequestProperty("Cookie", "cn=2");
-			conn.addRequestProperty("Cookie", "ipLoc-djd=12-951-956-52211.137989583");
-			conn.addRequestProperty("Cookie", "ipLocation=%u6c5f%u82cf");
-			conn.addRequestProperty("Cookie", "mt_xid=V2_52007VwEVVlhQVV4fQCkLBzMEGltVDU5bTx1NQABnBkFODV5WXwNBTAhSNwNGVVsKBVgvShhcA3sDEk5eXENaHkIcWQ5lCiJQbVhiWhhBEF4AYwURYlhf");
-			conn.addRequestProperty("Cookie", "pin=%E7%A7%8B%E5%A4%9C%E9%9B%A8%E5%B7%B7Q");
-			conn.addRequestProperty("Cookie", "pinId=LmnqqNUGYYjITBq5I3pwXw");
-			conn.addRequestProperty("Cookie", "thor=0602FD7E0777F6D338E19F02D7FDD72CD3F4A9634AC686DF0B2E62A32098FD6D85AB9484F4E1C8C3B65FF5C67B4E2C9BB8BD2ACD1FEF1956127DC12F0B742974F5AB62D3D361CD38577D0024BA993793ED6F6EFB4AF923560533E9DD9BD71BEE7E95F3781F5CA8693656D40D58C4E5AE65DEF2143A701F551FA236A34B2E1B04");
-			conn.addRequestProperty("Cookie", "unick=jd_%E7%A7%8B%E5%A4%9C%E9%9B%A8%E6%AE%87");
-			conn.addRequestProperty("Cookie", "unpl=V2_ZzNtbUtXQBZ0DBJXeBxdUmJXR15LAkAdJg8WV3xLC1ZkBUZYclRCFXMURldnGFUUZAMZWEJcQh1FCHZXchBYAWcCGllyBBNNIEwHDCRSBUE3XHxcFVUWF3RaTwEoSVoAYwtBDkZUFBYhW0IAKElVVTUFR21yVEMldQl2VnwdWQ1gBxJUcmdEJUU4T1B8EVoNVwIiXHIVF0lyC0dceFReAmMGGlpGV0oldDhF");
-			conn.addRequestProperty("Cookie", "user-key=9134f6d1-1940-444f-be5e-7209b36a50f6");
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "keep-alive");
+			conn.setRequestProperty("Referer", "http://www.mi.com/a/h/11406.html?client_id=180100041086&masid=17409.0380=");
+			conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36");
+			conn.setRequestProperty("Cookie","mstuid=1565660612968_2360; XM_agreement_sure=1; XM_agreement=0; xm_user_www_num=0;");
 
 			// conn.setRequestProperty("Content-Encoding","gzip");
 			conn.setRequestProperty("Content-Type", "text/xml;charset=UTF-8");
