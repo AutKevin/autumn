@@ -6,6 +6,7 @@ mSleep(3*1000)  --睡眠三秒,防止坐标没初始化好
 nLog('初始化成功')
 -- 今天是否分享过
 isShare = false;
+ItemNo = 3;
 
 -- 根据坐标点击
 function click(x,y)
@@ -40,11 +41,18 @@ function share(times)
 	end
 end
 
+toast("开始运行",1)
 startTime = os.time();
 while (true) do  -- 无限执行
+	
+	x,y = findMultiColorInRegionFuzzy( 0xff3031, "", 90, 30, 1226, 686, 1269)
+	ItemNo = math.ceil(x/144)  -- 720px/5=144 第几个栏目 1即为第一个栏目
+	toast("当前栏目为第"..ItemNo.."模块",1)
+	mSleep(1*1000)
+	
 	startTime = os.time();
-	--2.关注栏目--
-	if multiColor({{75,1026,0x9b9b9b},{214,1027,0xe32416},{341,1043,0xb3bbc1},{506,1028,0x9b9b9b},{648,1025,0xffffff}},80,false) == true then
+	--2.百灵栏目--
+	if ItemNo == 2 then
 		x,y = findMultiColorInRegionFuzzy( 0x191f25, "1|0|0x191f25,2|0|0x191f25,3|0|0x191f25", 90, 22, 190, 690, 958)  -- 查找黑色文字
 		--showClick(x,y);
 		click(x,y)  --点击进入
@@ -60,14 +68,21 @@ while (true) do  -- 无限执行
 		Type_study_y = Type_study_y+common.getRandom(0,25)
 		-- showClick(Type_study_x,Type_study_y)
 		common.click(Type_study_x,Type_study_y)
+		ItemNo = 3;
 	end
 	
 	--3.学习栏目
-	if multiColor({{75, 1026, 0x9b9b9b},{214,1028,0x9b9b9b},{341,1038,0xff3031},{357,1037,0xfff6f6},{507,1028,0x9b9b9b},{642,1032,0x9b9b9b}},80,false) == true then
-		toast('进入视频学习栏目',1)
+	if ItemNo == 3 then
+		toast('学习栏目',1)
 		x,y = findMultiColorInRegionFuzzy( 0x191f25, "1|0|0x191f25,2|0|0x191f25,3|0|0x191f25", 90, 22, 190, 690, 958)  -- 查找黑色文字
 		--showClick(x,y);
+		if x == -1 and y== -1 then
+		   toast("未找到黑色文字",1)
+			x = 314;
+			y = 795;
+		end
 		click(x,y)  -- 点击进入详情
+		toast("点击坐标"..x..","..y,1)
 		mSleep(3*60*1000)  -- 观看3分钟
 		moveTo(314,795,351,458,50,1)
 		click(40,74);  -- 点击返回
@@ -77,12 +92,17 @@ while (true) do  -- 无限执行
 		then
 			--[[进入视频学习栏目]]--
 			x,y = findMultiColorInRegionFuzzy( 0x9b9b9b, "-8|-1|0xffffff,-122|8|0xff3031,137|-3|0x9b9b9b,145|-3|0xffffff", 90, 7, 999, 677, 1078)
+			if x == -1 and y== -1 then
+				x = 365;
+				y = 1247;
+			end
 			click(x,y)
+			ItemNo = 4;
 		end	
 	end
 	
 	--4.视屏学习栏目
-	if multiColor({{75,1025,0x9b9b9b},{215,1028,0x9b9b9b},{506,1028,0xe32416},{646,1026,0xffffff}},80,false) == true then
+	if ItemNo == 4 then
 		--[[进入视频学习栏目]]--
 		moveTo(314,795,351,458,50,1)
 		toast("视屏学习栏",1)
@@ -90,6 +110,8 @@ while (true) do  -- 无限执行
 		x,y = findMultiColorInRegionFuzzy( 0x191f25, "1|0|0x191f25,2|0|0x191f25,3|0|0x191f25", 90, 22, 190, 690, 958)  -- 查找视屏的黑色文字
 		if(x==-1 and y==-1) then
 		   toast("未找到黑色文字",1)
+			x = 314;
+			y = 795;
 		end
 		click(x,y)  --点击进入视屏
 		mSleep(4*60*1000)  --观看四分钟
@@ -102,4 +124,3 @@ while (true) do  -- 无限执行
 	toast('已运行时间:'..endTime - startTime,1)
 	mSleep(2*1000)
 end
-
