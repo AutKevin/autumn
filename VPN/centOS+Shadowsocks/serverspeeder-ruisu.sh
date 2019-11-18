@@ -3,7 +3,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 export PATH
 
 
-#定义变量
+#定义变量 
 #授权文件自动生成url
 APX=http://rs.91yun.pw/apx1.php
 #安装包下载地址
