@@ -6,6 +6,13 @@ wget --no-check-certificate -O v2ray.sh https://git.io/v2ray.sh
 chmod +x v2ray.sh 
 ./v2ray.sh 2>&1 | tee v2ray.log
 ```
+脚本会自动安装以下文件：
+/usr/bin/v2ray/v2ray：V2Ray 程序；
+/usr/bin/v2ray/v2ctl：V2Ray 工具；
+/etc/v2ray/config.json：配置文件；
+/usr/bin/v2ray/geoip.dat：IP 数据文件
+/usr/bin/v2ray/geosite.dat：域名数据文件
+
 安装时使用kcp传输协议
 v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接
 ## 使用
