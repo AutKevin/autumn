@@ -1,10 +1,15 @@
-v2ray
+## v2ray
 官网：http://www.v2ray.com/
-安装
+## 安装
+```shell
 wget --no-check-certificate -O v2ray.sh https://git.io/v2ray.sh
 chmod +x v2ray.sh 
 ./v2ray.sh 2>&1 | tee v2ray.log
-使用
+```
+安装时使用kcp传输协议
+v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接
+## 使用
+```shell
 v2ray info //查看 V2Ray 配置信息
 v2ray config //修改 V2Ray 配置
 v2ray link //生成 V2Ray 配置文件链接
@@ -21,3 +26,10 @@ v2ray log //查看 V2Ray 运行日志
 v2ray update //更新 V2Ray
 v2ray update.sh //更新 V2Ray 管理脚本
 v2ray uninstall //卸载 V2Ray
+
+```
+## 客户端
+电脑版
+https://github.com/2dust/v2rayN/releases/tag/2.50
+手机版
+https://github.com/2dust/v2rayNG/releases
