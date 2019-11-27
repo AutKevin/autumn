@@ -4,9 +4,9 @@ export PATH
 #=================================================================#
 #   System Required:  CentOS 6,7, Debian, Ubuntu                  #
 #   Description: One click Install ShadowsocksR Server            #
-#   Author: Teddysun <i@teddysun.com>                             #
+#   Author: Kevin Qiu                                             #
 #   Thanks: @breakwa11 <https://twitter.com/breakwa11>            #
-#   Intro:  https://shadowsocks.be/9.html                         #
+#   Intro:  https://                                              #
 #=================================================================#
 
 clear
@@ -14,15 +14,21 @@ echo
 echo "#############################################################"
 echo "# One click Install ShadowsocksR Server                     #"
 echo "# Intro: https://shadowsocks.be/9.html                      #"
-echo "# Author: Teddysun <i@teddysun.com>                         #"
+echo "# Author: Kevin Qiu                                         #"
 echo "# Github: https://github.com/shadowsocksr/shadowsocksr      #"
 echo "#############################################################"
 echo
-
+#环境安装包
 libsodium_file="libsodium-1.0.17"
-libsodium_url="https://github.com/jedisct1/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz"
+libsodium_url="https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/ssr/libsodium-1.0.17.tar.gz?raw=true"
 shadowsocks_r_file="shadowsocksr-3.2.2"
-shadowsocks_r_url="https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.2.tar.gz"
+shadowsocks_r_url="https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/ssr/shadowsocksr-3.2.2.tar.gz?raw=true"
+
+#json配置文件，路径要和/etc/init.d/shadowsocksR中的json路径一致
+json_path="/etc/shadowsocks-r/"
+json_file="shadowsocksR_Config.json"
+#启动文件 /etc/init.d/shadowsocksR
+shadowsocksR_file="https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/centOS%2BShadowsocks/ssr/shadowsocksR"
 
 #Current folder
 cur_dir=`pwd`
@@ -334,7 +340,7 @@ download_files(){
     fi
     # Download ShadowsocksR init script
     if check_sys packageManager yum; then
-        if ! wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR -O /etc/init.d/shadowsocksR; then
+        if ! wget --no-check-certificate ${shadowsocksR_file} -O /etc/init.d/shadowsocksR; then
             echo -e "[${red}Error${plain}] Failed to download ShadowsocksR chkconfig file!"
             exit 1
         fi
@@ -380,26 +386,27 @@ firewall_set(){
 
 # Config ShadowsocksR
 config_shadowsocks(){
-    cat > /etc/shadowsocksr.json<<-EOF
-{
-    "server":"0.0.0.0",
-    "server_ipv6":"[::]",
-    "server_port":${shadowsocksport},
-    "local_address":"127.0.0.1",
-    "local_port":1080,
-    "password":"${shadowsockspwd}",
-    "timeout":120,
-    "method":"${shadowsockscipher}",
-    "protocol":"${shadowsockprotocol}",
-    "protocol_param":"",
-    "obfs":"${shadowsockobfs}",
-    "obfs_param":"",
-    "redirect":"",
-    "dns_ipv6":false,
-    "fast_open":false,
-    "workers":1
-}
-EOF
+		mkdir ${json_path}/
+    cat > ${json_path}/${json_file}<<-EOF
+		{
+		    "server":"0.0.0.0",
+		    "server_ipv6":"[::]",
+		    "server_port":${shadowsocksport},
+		    "local_address":"127.0.0.1",
+		    "local_port":1080,
+		    "password":"${shadowsockspwd}",
+		    "timeout":120,
+		    "method":"${shadowsockscipher}",
+		    "protocol":"${shadowsockprotocol}",
+		    "protocol_param":"",
+		    "obfs":"${shadowsockobfs}",
+		    "obfs_param":"",
+		    "redirect":"",
+		    "dns_ipv6":false,
+		    "fast_open":false,
+		    "workers":1
+		}
+		EOF
 }
 
 # Install ShadowsocksR
@@ -475,7 +482,7 @@ uninstall_shadowsocksr(){
         elif check_sys packageManager apt; then
             update-rc.d -f shadowsocks remove
         fi
-        rm -f /etc/shadowsocksr.json
+        rm -f ${json_path}/${json_file}
         rm -f /etc/init.d/shadowsocksR
         rm -f /var/log/shadowsocks.log
         rm -rf /usr/local/shadowsocks
