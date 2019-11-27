@@ -380,7 +380,8 @@ firewall_set(){
 
 # Config ShadowsocksR
 config_shadowsocks(){
-    cat > /etc/shadowsocksR/shadowsocks.json<<-EOF
+		mkdir /etc/shadowsocksR/
+    cat > /etc/shadowsocksR/shadowsocksR.json<<-EOF
 {
     "server":"0.0.0.0",
     "server_ipv6":"[::]",
@@ -475,7 +476,7 @@ uninstall_shadowsocksr(){
         elif check_sys packageManager apt; then
             update-rc.d -f shadowsocks remove
         fi
-        rm -f /etc/shadowsocksR/shadowsocks.json
+        rm -f /etc/shadowsocksR/shadowsocksR.json
         rm -f /etc/init.d/shadowsocksR
         rm -f /var/log/shadowsocks.log
         rm -rf /usr/local/shadowsocks
