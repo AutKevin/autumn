@@ -12,7 +12,7 @@
 # Description:       Start or stop the ShadowsocksR server
 ### END INIT INFO
 
-# Author: Teddysun <i@teddysun.com>
+# Author: Kevin Autumn
 
 NAME=ShadowsocksR
 DAEMON=/usr/local/shadowsocks/server.py
@@ -20,6 +20,8 @@ if [ -f /etc/shadowsocks-r/config.json ]; then
     CONF=/etc/shadowsocks-r/config.json
 elif [ -f /etc/shadowsocks.json ]; then
     CONF=/etc/shadowsocks.json
+elif [ -f /etc/shadowsocks-r/shadowsocksR_Config.json ]; then
+    CONF=/etc/shadowsocks-r/shadowsocksR_Config.json
 fi
 RETVAL=0
 
