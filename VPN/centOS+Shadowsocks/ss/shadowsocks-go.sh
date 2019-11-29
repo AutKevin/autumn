@@ -254,7 +254,7 @@ download_files(){
 
     # Download start script
     if check_sys packageManager yum; then
-        if ! wget --no-check-certificate -O /etc/init.d/shadowsocks https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go; then
+        if ! wget --no-check-certificate -O /etc/init.d/shadowsocks https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/centOS%2BShadowsocks/ss/shadowsocks-go; then
             echo -e "[${red}Error${plain}] Failed to download shadowsocks-go auto start script!"
             exit 1
         fi
