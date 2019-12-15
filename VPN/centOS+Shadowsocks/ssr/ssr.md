@@ -18,3 +18,4 @@ cat /etc/shadowsocks-r/shadowsocksR_Config.json
 重启：/etc/init.d/shadowsocksR restart
 状态：/etc/init.d/shadowsocksR status
 ```
+ssr的客户端同样可以用shadowsocks，只不过不能设置混淆。
