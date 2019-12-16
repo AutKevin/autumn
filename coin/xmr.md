@@ -71,7 +71,7 @@ xmrig -o xmr.f2pool.com:</span><span style="color: #800080;">13531</span><span s
 <span style="color: #008000;">//CPU+GPU（A卡）,[opencl](https://baike.baidu.com/item/OpenCL/8477301)</span>
 xmrig -o xmr.f2pool.com:</span><span style="color: #800080;">13531</span> -u wallet_address.worker_name -p x -k --opencl</pre>
 </div>
-
+上面的这些配置,可以在config.json中的pools下面配置,url为矿池地址,user为钱包地址,pass为密码.cpu,opencl/cuda的enabled属性是是否此硬件
 [其他使用命令](https://github.com/xmrig/xmrig)
 
 ![](https://img2018.cnblogs.com/blog/1208477/201912/1208477-20191214223416996-857092155.png)
