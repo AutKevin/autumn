@@ -56,6 +56,7 @@ nano config/.config.php
 ```
 
 ### composer install 被killed问题
+```shell
 # 查看内存和 swap 的使用情况:
 $ free -m
 # 在 var 目录创建制作swap文件
@@ -74,3 +75,5 @@ $ vim /etc/fstab
  /var/swap/swapfile none swap sw 0 0
 #再次查看使用情况
 $ free -m
+```
+
