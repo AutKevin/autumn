@@ -55,3 +55,22 @@ cp config/.config.example.php config/.config.php
 nano config/.config.php
 ```
 
+### composer install 被killed问题
+# 查看内存和 swap 的使用情况:
+$ free -m
+# 在 var 目录创建制作swap文件
+$ cd /var
+$ mkdir swap
+$ cd swap
+# 创建一个空文件， count 表示创建的文件大小，这里代表1GB
+$ dd if=/dev/zero of=swapfile bs=1024 count=1000000          
+# 将创建的文件制作为 swap 文件 
+$ mkswap swapfile
+# 使swap文件生效
+$ swapon /swapfile
+# 自动挂载
+$ vim /etc/fstab
+# 写入
+ /var/swap/swapfile none swap sw 0 0
+#再次查看使用情况
+$ free -m
