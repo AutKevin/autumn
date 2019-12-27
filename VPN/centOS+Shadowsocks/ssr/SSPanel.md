@@ -55,7 +55,7 @@ cp config/.config.example.php config/.config.php
 nano config/.config.php
 ```
 
-### composer install 被killed问题
+### composer install 被killed问题(内存不足导致)
 ```shell
 # 查看内存和 swap 的使用情况:
 $ free -m
@@ -68,7 +68,7 @@ $ dd if=/dev/zero of=swapfile bs=1024 count=1000000
 # 将创建的文件制作为 swap 文件 
 $ mkswap swapfile
 # 使swap文件生效
-$ swapon /swapfile
+$ swapon swapfile
 # 自动挂载
 $ vim /etc/fstab
 # 写入
