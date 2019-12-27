@@ -68,6 +68,7 @@ php xcat resetTraffic
 #下载工具包到服务器
 php xcat initdownload
 ```
+管理員和普通注冊用戶用的一個登錄頁面，只不過管理員登錄后，最後main有一個管理面板。
 
 ### composer install 被killed问题(内存不足导致)
 ```shell
