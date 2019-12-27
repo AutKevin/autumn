@@ -90,6 +90,14 @@ crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat syncvpn
 crontab -e */1 * * * * php -n /www/wwwroot/文件夹/xcat syncnas
 ```
 
+### 后端一键安装
+根据数据库ip、数据库的用户名、密码、前端新增结点的ID进行配置.
+```shell
+yum -y install wget
+wget -N --no-check-certificate https://raw.githubusercontent.com/lizhongnian/ss-panel-v3-mod-node-connect/master/ss-panel-v3-mod-node-connect.sh
+chmod +x ss-panel-v3-mod-node-connect.sh && bash ss-panel-v3-mod-node-connect.sh
+```
+
 ### composer install 被killed问题(内存不足导致)
 ```shell
 # 查看内存和 swap 的使用情况:
