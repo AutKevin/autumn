@@ -14,10 +14,10 @@
 
 ### 添加网站
 
-输入域名自动生成备注及根目录，设置FTP用户名密码以及数据库用户名密码。
+输入域名自动生成备注及根目录，设置FTP用户名密码以及数据库用户名密码。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
 
 ```shell
-cd /www/wwwroot/文件夹
+cd /www/wwwroot/网站文件夹
 git clone -b master https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
 git config core.filemode false
 wget https://getcomposer.org/installer -O composer.phar
