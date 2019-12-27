@@ -70,6 +70,26 @@ php xcat initdownload
 ```
 管理員和普通注冊用戶用的一個登錄頁面，只不過管理員登錄后，最後main有一個管理面板。
 
+### 配置定时任务
+```shell
+crontab -e 30 22 * * * php /www/wwwroot/文件夹/xcat sendDiaryMail
+crontab -e 0 0 * * * php -n /www/wwwroot/文件夹/xcat dailyjob
+crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat checkjob
+crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat syncnode
+#每20小时备份一次
+crontab -e 0 */20 * * * php -n /www/wwwroot/文件夹/xcat backup
+#财务报表
+crontab -e 5 0 * * * php /www/wwwroot/文件夹/xcat sendFinanceMail_day
+crontab -e 6 0 * * 0 php /www/wwwroot/文件夹/xcat sendFinanceMail_week
+crontab -e 7 0 1 * * php /www/wwwroot/文件夹/xcat sendFinanceMail_month
+#检测是否被墙
+crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat detectGFW
+#用radius
+crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat synclogin
+crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat syncvpn
+crontab -e */1 * * * * php -n /www/wwwroot/文件夹/xcat syncnas
+```
+
 ### composer install 被killed问题(内存不足导致)
 ```shell
 # 查看内存和 swap 的使用情况:
