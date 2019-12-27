@@ -55,6 +55,20 @@ cp config/.config.example.php config/.config.php
 nano config/.config.php
 ```
 
+### 创建管理员并同步用户
+```shell
+#创建管理员,会要求你输入邮箱和密码
+php xcat createAdmin
+#同步用户
+php xcat syncusers
+#下载IP解析库
+php xcat initQQWry
+#重置流量
+php xcat resetTraffic
+#下载工具包到服务器
+php xcat initdownload
+```
+
 ### composer install 被killed问题(内存不足导致)
 ```shell
 # 查看内存和 swap 的使用情况:
