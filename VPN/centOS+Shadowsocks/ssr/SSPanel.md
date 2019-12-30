@@ -47,13 +47,16 @@ location / {
 
 ### 配置网站程序
 
-修改db_database等
-
+修改db_database,mukey等
 ```php
 cd /www/wwwroot/文件夹/
 cp config/.config.example.php config/.config.php
 nano config/.config.php
 ```
+$System_Config['db_host'] = 'localhost';						//数据库地址
+$System_Config['db_database'] = 'dbname';						//数据库名
+$System_Config['db_username'] = 'root';							//数据库用户名
+$System_Config['db_password'] = '123456'
 
 ### 创建管理员并同步用户
 ```shell
