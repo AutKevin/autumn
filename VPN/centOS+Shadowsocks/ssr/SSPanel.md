@@ -95,6 +95,7 @@ crontab -e */1 * * * * php -n /www/wwwroot/文件夹/xcat syncnas
 
 ### SSR后端一键安装
 webapi: ip、mukey(config/.config.php)、结点ID 进行配置SSR.
+
 database: ip、数据库的用户名、密码、结点ID 进行配置SSR.
 ```shell
 yum -y install wget
