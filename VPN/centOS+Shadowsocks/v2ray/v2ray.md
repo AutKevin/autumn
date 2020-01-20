@@ -124,6 +124,14 @@ error指定的log文件记录异常情况，当连接不上可以查看这里的
 ```shell
 tail -f /var/log/v2ray/error.log
 ```
+## 带输出启动
+```shell
+/usr/bin/v2ray/v2ray --test --config /etc/v2ray/config.json
+```
+## journal 日志
+```shell
+journalctl -u v2ray
+```
 ## 客户端
 
 电脑版
