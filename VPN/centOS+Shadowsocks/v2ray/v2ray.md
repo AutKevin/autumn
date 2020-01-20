@@ -113,7 +113,17 @@ v2ray update.sh //更新 V2Ray 管理脚本
 v2ray uninstall //卸载 V2Ray
 
 ```
+## 查看日志文件
+日志文件配置存在于/etc/v2ray/config.json
 
+access指定的log文件根据邮箱记录使用记录,可以查看ip,端口等信息，可以查看正在使用的邮箱。
+```shell
+tail -f /var/log/v2ray/access.log
+```
+error指定的log文件记录异常情况，当连接不上可以查看这里的日志。
+```shell
+tail -f /var/log/v2ray/error.log
+```
 ## 客户端
 
 电脑版
