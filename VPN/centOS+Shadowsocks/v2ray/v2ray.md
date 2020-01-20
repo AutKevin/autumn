@@ -124,9 +124,12 @@ error指定的log文件记录异常情况，当连接不上可以查看这里的
 ```shell
 tail -f /var/log/v2ray/error.log
 ```
-## 带输出启动
+## 常用命令
 ```shell
-/usr/bin/v2ray/v2ray --test --config /etc/v2ray/config.json
+//查看v2ray版本
+/usr/bin/v2ray/v2ray -version
+//测试配置文件有效性，如果有问题则输出错误信息，不运行 V2Ray 主程序
+/usr/bin/v2ray/v2ray -test -config /etc/v2ray/config.json
 ```
 ## journal 日志
 ```shell
