@@ -10,7 +10,7 @@ https://www.namecheap.com/
 
 https://www.cloudflare.com
 
-将vps的ip使用cdn解析购买的域名，开启代理时ping的ip会变成cloudflare的ip。
+将vps的ip使用cdn解析到刚刚购买的域名上，开启代理时ping的ip会变成cloudflare的ip。
 
 ## 安装Nginx
 
@@ -25,26 +25,28 @@ vi /usr/local/nginx/conf/nginx.conf
 添加如下配置。一定要用utf-8无bom格式的文件替换（**<u>直接用记事本编辑会不识别</u>**）。
 
 ```json
-server {
-  listen  443 ssl;
-  ssl on;
-  ssl_certificate       /etc/v2ray/v2ray.crt;   #这里根据安装的证书路径填写
-  ssl_certificate_key   /etc/v2ray/v2ray.key;   #这里根据安装的证书路径填写
-  ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers           HIGH:!aNULL:!MD5;
-  server_name           mydomain.me;   #域名需要修改
-        location /autumn/ { # 与 V2Ray服务端 配置中的 path 保持一致
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:10000;  #这个端口和服务端保持一致
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $http_host;
+http {
+	server {
+	  listen  443 ssl;
+	  ssl on;
+	  ssl_certificate       /etc/v2ray/v2ray.crt;   #这里根据安装的证书路径填写
+	  ssl_certificate_key   /etc/v2ray/v2ray.key;   #这里根据安装的证书路径填写
+	  ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
+	  ssl_ciphers           HIGH:!aNULL:!MD5;
+	  server_name           mydomain.me;   #域名需要修改
+		location /autumn/ { # 与 V2Ray服务端 配置中的 path 保持一致
+		proxy_redirect off;
+		proxy_pass http://127.0.0.1:10000;  #这个端口和服务端保持一致
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header Host $http_host;
 
-        # Show realip in v2ray access.log
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
+		# Show realip in v2ray access.log
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		}
+	}
 }
 ```
 
