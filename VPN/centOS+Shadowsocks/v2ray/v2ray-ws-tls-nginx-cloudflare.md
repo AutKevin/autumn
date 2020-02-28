@@ -96,6 +96,73 @@ vi /etc/v2ray/config.json
   ]
 }
 ```
+### 两个vps的v2ray相连
+服务器的v2ray的inbound端被nginx反向代理了,inbound使用ws的方式和nginx通信,v2ray的outbound端连接到另一个vps的inbound端
+```json
+{
+	"log": {
+		"access": "/var/log/v2ray/access.log",
+		"error": "/var/log/v2ray/error.log",
+		"loglevel": "warning"
+	},
+	"inbounds": [{
+		"port": 10000, //这个端口和nginx443端口代理的端口要一致
+		"listen": "127.0.0.1", //只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口
+		"protocol": "vmess",
+		"settings": {
+			"clients": [{
+				"id": "b831381d-6324-4d53-ad4f-8cda48b30811",
+				"level": 1,
+				"alterId": 64
+			}]
+		},
+		"streamSettings": {
+			"network": "ws",
+			"wsSettings": {
+				"path": "/autumn/" //注意：这里改成和nginx一致，2条斜杠别漏了
+			}
+		}
+	}],
+	"outbounds": [{
+		"protocol": "vmess",
+		"settings": {
+			"vnext": [{
+				"address": "其他vps的IP",
+				"port": 20000,   //另一个vps的端口
+				"users": [{
+					"id": "cdec184e-56b2-4feb-8b86-f0c0228c56f2",   //另一个vps端的id认证
+					"alterId": 233
+				}]
+			}]
+		},
+		"streamSettings": {   
+			"network": "kcp",   //因为另一个vps的inbound端使用的inbound是kcp协议
+			"kcpSettings": {
+				"header": {
+					"type": "none"
+				}
+			}
+		},
+		"sniffing": {
+			"enabled": true,
+			"destOverride": [
+				"http",
+				"tls"
+			]
+		}
+	}],
+	"transport": {
+		"kcpSettings": {   //关于kcp的设置
+			"uplinkCapacity": 100,
+			"downlinkCapacity": 100,
+			"congestion": true
+		},
+		"sockopt": {
+			"tcpFastOpen": true
+		}
+	}
+}
+```
 
 ## 客户端配置
 ![image-20200228010334845](https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/v2ray/v2ray+ws+tls+nginx+cdn%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png?raw=true)
