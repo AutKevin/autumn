@@ -96,6 +96,93 @@ vi /etc/v2ray/config.json
   ]
 }
 ```
+
+### 多个配置相连
+
+```json
+{
+  "log": {
+	"access": "/var/log/v2ray/access.log",
+	"error": "/var/log/v2ray/error.log",
+	"loglevel": "warning"
+  },
+  "inbounds": [   //主要配置,只能配置一个
+    {  //v2rayclient + cdn + tls + nginx + ws +v2rayserver 
+      "port": 10000,  //这个端口自己修改一下
+      "listen":"127.0.0.1",//只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口,配置为全部为0.0.0.0
+      "protocol": "vmess",
+      "settings": {
+	"clients": [
+		{
+		"id": "857e5dfb-33e2-4f1c-8ba6-9fc86e8e6fb1",
+		"level": 1,
+		"alterId": 233
+		}
+	]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+        "path": "/autumn/"       //注意：这里也改成和nginx一致的path，2条斜杠别漏了
+        }
+      }
+    }
+  ],
+  "inboundDetour": [   //其余配置,可以配置多个
+      {   //kcp配置
+        "port": 39290,
+        "protocol": "vmess",
+        "settings": {
+            "clients": [
+                {
+                    "id": "96400ac3-2bbd-41ea-959f-014e97dab410",
+                    "alterId": 16,
+                    "email": "autumn@v2ray.com"
+                }
+            ]
+        },
+        "streamSettings": {
+            "network": "mkcp",
+            "kcpSettings": {
+                "header": {
+                    "type": "wechat-video"
+                }
+            }
+        },
+        "sniffing": {
+            "enabled": true,
+            "destOverride": [
+                "http",
+                "tls"
+            ]
+        }
+     }
+  ],
+    "outbounds": [
+	{
+		"protocol": "freedom",
+		"settings": {}
+	},
+	{
+		"protocol": "blackhole",
+		"settings": {},
+		"tag": "blocked"
+	},
+	{
+		"protocol": "freedom",
+		"settings": {},
+		"tag": "direct"
+	},
+	{
+		"protocol": "mtproto",
+		"settings": {},
+		"tag": "tg-out"
+	}
+	//include_out_config
+    ]
+}
+```
+
 ### 两个vps的v2ray相连
 服务器的v2ray的inbound端被nginx反向代理了,inbound使用ws的方式和nginx通信,v2ray的outbound端连接到另一个vps的inbound端
 ```json
