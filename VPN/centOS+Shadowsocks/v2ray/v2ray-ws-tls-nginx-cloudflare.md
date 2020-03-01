@@ -254,3 +254,9 @@ vi /etc/v2ray/config.json
 ## 客户端配置
 ![image-20200228010334845](https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/v2ray/v2ray+ws+tls+nginx+cdn%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png?raw=true)
 
+### Xshell使用代理连接被封的VPS
+开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.
+xshell -> 属性 -> 代理 -> 添加代理服务器
+Type: http（我用的是ws + tls + nginx + cdn，所以要选择http,如果是ss要选择socket，具体要根据你服务器的协议来定）
+Host: 127.0.0.1
+Port: 10809 (具体要根据本地代理软件的代理in端口来设置,不知道的可以直接看浏览器的代理)
