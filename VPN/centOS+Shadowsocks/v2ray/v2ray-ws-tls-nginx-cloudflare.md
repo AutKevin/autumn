@@ -25,6 +25,9 @@ vi /usr/local/nginx/conf/nginx.conf
 添加如下配置。一定要用utf-8无bom格式的文件替换（**<u>直接用记事本编辑会不识别</u>**）。
 
 ```json
+#pid 需要mkdir /usr/local/nginx/logs -p 否则不能开机自启
+pid /usr/local/nginx/logs/nginx.pid;
+
 http {
 	server {
 	  listen  443 ssl;
@@ -33,8 +36,8 @@ http {
 	  ssl_certificate_key   /etc/v2ray/v2ray.key;   #这里根据安装的证书路径填写
 	  ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
 	  ssl_ciphers           HIGH:!aNULL:!MD5;
-	  server_name           mydomain.me;   #域名需要修改
-		location /autumn/ { # 与 V2Ray服务端 配置中的 path 保持一致
+	  server_name           mydomain.me;   #域名
+		location /video/ {    #与V2Ray服务端 配置中的 path 保持一致
 		proxy_redirect off;
 		proxy_pass http://127.0.0.1:10000;  #这个端口和服务端保持一致
 		proxy_http_version 1.1;
