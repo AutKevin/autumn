@@ -100,8 +100,9 @@ vi /etc/v2ray/config.json
 }
 ```
 
-### 多个配置相连
-
+### 多个配置
+生成UUID:  cat /proc/sys/kernel/random/uuid
+测试配置文件: /usr/bin/v2ray/v2ray --test --config /etc/v2ray/config.json
 ```json
 {
   "log": {
