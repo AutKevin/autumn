@@ -72,21 +72,21 @@ vi /etc/v2ray/config.json
   },
   "inbounds": [
     {
-      "port": 10000,  //这个端口自己修改一下
-      "listen":"127.0.0.1",//只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口
+      "port": 10000,  //端口和nginx代理的端口一致
+      "listen":"127.0.0.1",//只监听 127.0.0.1，避免除本机外的机器探测到端口,如果要所有机器检测到可以写0.0.0.0
       "protocol": "vmess",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811", //id自行修改，但保证位数一致
-            "alterId": 64 //自行修改
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811", //uuid
+            "alterId": 64 //和客户端保持一致
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-        "path": "/autumn/"       //注意：这里改成自己的,并且和Nginx中配置一致，2条斜杠别漏了
+        "path": "/autumn/"       //注意：和Nginx中配置一致，两个斜杠不能省略
         }
       }
     }
