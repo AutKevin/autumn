@@ -4,7 +4,7 @@ sstap不同于v2ray客户端和ssr客户端，sstap可以实现整个电脑的�
 
 sstap和其他不一样的是，会在网络中新建一个SSTAP虚拟网卡，从而实现全软件代理（其他客户端仅仅用端口）。
 
-![image-20200726100359585](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200726100359585.png)
+![image-20200726100359585](https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/SSTap/images\image-20200726100359585.png)
 
 全局：代理所有软件
 
@@ -21,12 +21,12 @@ sstap和其他不一样的是，会在网络中新建一个SSTAP虚拟网卡，�
 1. 启动v2ray并调试通
 2. 点击参数设置，查看本地端口并开启UDP
 
-![image-20200726100921268](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200726100921268.png)
+![image-20200726100921268](https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/SSTap/images\image-20200726100921268.png)
 
 3.配置SSTap
 
-![image-20200726101209631](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200726101209631.png)
+![image-20200726101209631](https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/SSTap/images\image-20200726101209631.png)
 
 4.测试并连接，测试TCP和UDP都通后。然后点击连接。
 
-![image-20200726101305739](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20200726101305739.png)
+![image-20200726101305739](https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/SSTap/images\image-20200726101305739.png)
