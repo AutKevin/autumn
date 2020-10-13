@@ -144,6 +144,6 @@ https://github.com/2dust/v2rayN/releases/tag/2.50
 https://github.com/2dust/v2rayNG/releases
 
 ## 局域网内共享
-只能共享PAC模式的10808端口，全局模式的10809端口无法共享。
-客户端V2ray -> v2ray设置 -> 勾上允许来自局域网的连接。
-在另一台机器上telnet yourIP 10808，不通需要开放端口。
+SOCKS5协议共享10808端口，HTTP协议共享10809端口。
+SOCKS5协议需要修改客户端V2ray -> v2ray设置 -> 勾上允许来自局域网的连接。在另一台机器上telnet yourIP 10808，不通需要开放端口。
+10809因为是http协议,可以直接在浏览器中设置代理，不需要第三方代理软件。
