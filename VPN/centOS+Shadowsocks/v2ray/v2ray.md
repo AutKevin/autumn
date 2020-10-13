@@ -25,6 +25,7 @@ chmod +x v2ray.sh
 
 v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接
 
+记得开放防火墙端口,可以直接禁用防火墙: systemctl stop firewalld
 ## 多用户多端口配置
 
 生成uuid
