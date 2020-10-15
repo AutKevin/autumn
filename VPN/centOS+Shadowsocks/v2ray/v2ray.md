@@ -139,10 +139,11 @@ journalctl -u v2ray
 ## BBR安装
 ```shell
 wget https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/centOS%2BShadowsocks/bbr.sh
+chmod +x bbr.sh
+./bbr.sh
 ```
-选择4
-
 查看是否启用bbr
+
 sysctl net.ipv4.tcp_available_congestion_control
 
 
