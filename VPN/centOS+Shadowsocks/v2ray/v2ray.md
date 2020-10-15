@@ -136,6 +136,16 @@ tail -f /var/log/v2ray/error.log
 ```shell
 journalctl -u v2ray
 ```
+## BBR安装
+```shell
+wget https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/centOS%2BShadowsocks/bbr.sh
+```
+选择4
+
+查看是否启用bbr
+sysctl net.ipv4.tcp_available_congestion_control
+
+
 ## 客户端
 
 电脑版
