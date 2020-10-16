@@ -137,6 +137,9 @@ tail -f /var/log/v2ray/error.log
 journalctl -u v2ray
 ```
 ## BBR安装
+
+bbr可以加速tcp协议,kcp是udp协议,没有意义
+
 ```shell
 wget https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/centOS%2BShadowsocks/bbr.sh
 chmod +x bbr.sh
