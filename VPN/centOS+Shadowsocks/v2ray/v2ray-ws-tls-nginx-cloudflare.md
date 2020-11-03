@@ -11,6 +11,7 @@ https://www.namecheap.com/
 https://www.cloudflare.com
 
 将vps的ip使用cdn解析到刚刚购买的域名上，开启代理时ping的ip会变成cloudflare的ip。
+
 详见:https://www.cnblogs.com/aeolian/p/13920553.html
 
 ## 安装Nginx
