@@ -33,7 +33,8 @@ pid /usr/local/nginx/logs/nginx.pid;
 http {
 	server {
 	  listen  443 ssl;
-	  ssl on;
+	  #如果systemctl status nginx.service报错nginx: [warn] the "ssl" directive is deprecated, use the "listen ... ssl" directive instead,需要删除ssl on
+	  # ssl on;    
 	  ssl_certificate       /etc/v2ray/v2ray.crt;   #这里根据安装的证书路径填写
 	  ssl_certificate_key   /etc/v2ray/v2ray.key;   #这里根据安装的证书路径填写
 	  ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
