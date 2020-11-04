@@ -39,7 +39,7 @@ http {
 	  ssl_certificate_key   /etc/v2ray/v2ray.key;   #这里根据安装的证书路径填写
 	  ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
 	  ssl_ciphers           HIGH:!aNULL:!MD5;
-	  server_name           mydomain.me;   #域名
+	  server_name           mydomain.me;     #域名
 		location /video/ {    #与V2Ray服务端 配置中的 path 保持一致
 		proxy_redirect off;
 		proxy_pass http://127.0.0.1:10000;  #这个端口和服务端保持一致
@@ -75,21 +75,21 @@ vi /etc/v2ray/config.json
   },
   "inbounds": [
     {
-      "port": 10000,  //端口和nginx代理的端口一致
-      "listen":"127.0.0.1",//只监听 127.0.0.1，避免除本机外的机器探测到端口,如果要所有机器检测到可以写0.0.0.0
+      "port": 10000,  #端口和nginx代理的端口一致
+      "listen":"127.0.0.1",#只监听 127.0.0.1，避免除本机外的机器探测到端口,如果要所有机器检测到可以写0.0.0.0
       "protocol": "vmess",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811", //uuid
-            "alterId": 64 //和客户端保持一致
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811", #uuid
+            "alterId": 64   #和客户端保持一致
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-        "path": "/autumn/"       //注意：和Nginx中配置一致，两个斜杠不能省略
+        "path": "/video/"       #注意：和Nginx中配置一致，两个斜杠不能省略
         }
       }
     }
