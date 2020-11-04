@@ -22,12 +22,15 @@ https://www.cnblogs.com/aeolian/p/9002084.html#autoid-1-0-0
 
 ```shell
 vi /usr/local/nginx/conf/nginx.conf
+或者
+vi /etc/nginx/nginx.conf
 ```
 
 添加如下配置。一定要用utf-8无bom格式的文件替换（**<u>直接用记事本编辑会不识别</u>**）。
 
 ```json
 #pid 需要mkdir /usr/local/nginx/logs -p 否则不能开机自启
+
 pid /usr/local/nginx/logs/nginx.pid;
 
 http {
