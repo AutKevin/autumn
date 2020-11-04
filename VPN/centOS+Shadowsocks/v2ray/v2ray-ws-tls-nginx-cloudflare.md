@@ -261,6 +261,28 @@ vi /etc/v2ray/config.json
 ## 客户端配置
 ![image-20200228010334845](https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/v2ray/v2ray+ws+tls+nginx+cdn%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png?raw=true)
 
+## 问题
+配置好https://域名可访问,但是v2ray连接不上去.
+查看nginx日志
+
+```bash
+lsof -p 进程ID|grep log
+
+#查看error日志
+tail -f /var/log/nginx/error.log
+
+#查看access日志
+tail -f /var/log/nginx/access.log
+```
+error日志
+connect() to 127.0.0.1:10000 failed (13: Permission denied) while connecting to upstream
+权限被拒绝
+
+access日志
+"GET /video/ HTTP/1.1" 502 173 "-" "Go-http-client/1.1" "-"
+返回Http状态为502,表示上游服务器接收到无效的响应
+
+
 ### Xshell使用代理连接被封的VPS
 开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.
 xshell -> 属性 -> 代理 -> 添加代理服务器
