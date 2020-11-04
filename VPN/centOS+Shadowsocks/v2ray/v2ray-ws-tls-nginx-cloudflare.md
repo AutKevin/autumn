@@ -21,8 +21,9 @@ https://www.cloudflare.com
 https://www.cnblogs.com/aeolian/p/9002084.html#autoid-1-0-0
 
 ```shell
+#手动
 vi /usr/local/nginx/conf/nginx.conf
-或者
+#yum
 vi /etc/nginx/nginx.conf
 ```
 
@@ -31,7 +32,7 @@ vi /etc/nginx/nginx.conf
 ```json
 #pid 需要mkdir /usr/local/nginx/logs -p 否则不能开机自启
 
-pid /usr/local/nginx/logs/nginx.pid;
+pid /usr/local/nginx/logs/nginx.pid;   #yum安装的不需要
 
 http {
 	server {
