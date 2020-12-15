@@ -10,8 +10,8 @@ function lingqu() {
   
     var p1 = '去逛一逛';
     var p2 = '去参加';
-    var target =  text(p1).findOnce() || text(p2).findOnce();  //找p1,找不到就找p2
     while (true) {
+        var target =  text(p1).findOnce() || text(p2).findOnce();  //找p1,找不到就找p2
         if (target == null) {  //如果不存在
              toast("不存在"+p1+","+p2);
              break;  //则跳出
