@@ -255,7 +255,36 @@ vi /etc/v2ray/config.json
 }
 ```
 
+### 域名到期更换证书
+
+域名到期后除了直接续费域名，如果要更换域名的话要更新服务器tls证书。
+
+1.申请好域名。
+
+2.服务器生成证书，.crt和.key尽量和之前的一致，这样不用配置nginx.conf的证书路径了。
+
+```bash
+~/.acme.sh/acme.sh --installcert -d mydomain.me --fullchainpath /etc/crt/autumn.crt --keypath /etc/crt/autumn.key --ecc
+```
+
+3.配置nginx.conf，更新如下三个参数。
+
+```json
+  ssl_certificate       /etc/crt/autumn.crt;  #.crt路径
+  ssl_certificate_key   /etc/crt/autumn.key;   #.key路径
+  server_name           mydomain.me;   #更新的域名
+```
+
+4.配置Cloudflare
+
+要想使用cdn，需要在https://dash.cloudflare.com/uuid/mydomain.me/dns中配置域名和服务器IP，以便域名可以使用cdn；配置完毕后复制页面上NS（nameserver），例如elsa.ns.cloudflare.com、 javier.ns.cloudflare.com。
+
+5.登录域名供应商的账户
+
+停用服务商自己的nameserver，使用自定义**Nameservers**，以便将解析托管给Cloudflare。
+
 ## 客户端配置
+
 ![image-20200228010334845](https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/v2ray/v2ray+ws+tls+nginx+cdn%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png?raw=true)
 
 ### Xshell使用代理连接被封的VPS
