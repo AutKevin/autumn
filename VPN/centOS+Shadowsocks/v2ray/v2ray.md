@@ -25,6 +25,7 @@ chmod +x v2ray.sh
 
 v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接
 
+记得开放防火墙端口,可以直接禁用防火墙: systemctl stop firewalld
 ## 多用户多端口配置
 
 生成uuid
@@ -135,6 +136,20 @@ tail -f /var/log/v2ray/error.log
 ```shell
 journalctl -u v2ray
 ```
+## BBR安装
+
+bbr可以加速tcp协议,kcp是udp协议,没有意义
+
+```shell
+wget https://raw.githubusercontent.com/AutKevin/autumn/master/VPN/centOS%2BShadowsocks/bbr.sh
+chmod +x bbr.sh
+./bbr.sh
+```
+查看是否启用bbr
+
+sysctl net.ipv4.tcp_available_congestion_control
+
+
 ## 客户端
 
 电脑版
@@ -144,6 +159,6 @@ https://github.com/2dust/v2rayN/releases/tag/2.50
 https://github.com/2dust/v2rayNG/releases
 
 ## 局域网内共享
-只能共享PAC模式的10808端口，全局模式的10809端口无法共享。
-客户端V2ray -> v2ray设置 -> 勾上允许来自局域网的连接。
-在另一台机器上telnet yourIP 10808，不通需要开放端口。
+SOCKS5协议共享10808端口，HTTP协议共享10809端口。
+SOCKS5协议需要修改客户端V2ray -> v2ray设置 -> 勾上允许来自局域网的连接。在另一台机器上telnet yourIP 10808，不通需要开放端口。
+10809因为是http协议,可以直接在浏览器中设置代理，不需要第三方代理软件。

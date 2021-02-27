@@ -12,6 +12,8 @@ https://www.cloudflare.com
 
 将vps的ip使用cdn解析到刚刚购买的域名上，开启代理时ping的ip会变成cloudflare的ip。
 
+详见:https://www.cnblogs.com/aeolian/p/13920553.html
+
 ## 安装Nginx
 
 安装并配好ssl证书
@@ -19,24 +21,29 @@ https://www.cloudflare.com
 https://www.cnblogs.com/aeolian/p/9002084.html#autoid-1-0-0
 
 ```shell
+#手动
 vi /usr/local/nginx/conf/nginx.conf
+#yum
+vi /etc/nginx/nginx.conf
 ```
 
 添加如下配置。一定要用utf-8无bom格式的文件替换（**<u>直接用记事本编辑会不识别</u>**）。
 
 ```json
 #pid 需要mkdir /usr/local/nginx/logs -p 否则不能开机自启
-pid /usr/local/nginx/logs/nginx.pid;
+
+pid /usr/local/nginx/logs/nginx.pid;   #yum安装的不需要
 
 http {
 	server {
 	  listen  443 ssl;
-	  ssl on;
+	  #如果systemctl status nginx.service报错nginx: [warn] the "ssl" directive is deprecated, use the "listen ... ssl" directive instead,需要删除ssl on
+	  # ssl on;    
 	  ssl_certificate       /etc/v2ray/v2ray.crt;   #这里根据安装的证书路径填写
 	  ssl_certificate_key   /etc/v2ray/v2ray.key;   #这里根据安装的证书路径填写
 	  ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
 	  ssl_ciphers           HIGH:!aNULL:!MD5;
-	  server_name           mydomain.me;   #域名
+	  server_name           mydomain.me;     #域名
 		location /video/ {    #与V2Ray服务端 配置中的 path 保持一致
 		proxy_redirect off;
 		proxy_pass http://127.0.0.1:10000;  #这个端口和服务端保持一致
@@ -72,21 +79,21 @@ vi /etc/v2ray/config.json
   },
   "inbounds": [
     {
-      "port": 10000,  //端口和nginx代理的端口一致
-      "listen":"127.0.0.1",//只监听 127.0.0.1，避免除本机外的机器探测到端口,如果要所有机器检测到可以写0.0.0.0
+      "port": 10000,  #端口和nginx代理的端口一致
+      "listen":"127.0.0.1",#只监听 127.0.0.1，避免除本机外的机器探测到端口,如果要所有机器检测到可以写0.0.0.0
       "protocol": "vmess",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811", //uuid
-            "alterId": 64 //和客户端保持一致
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811", #uuid
+            "alterId": 64   #和客户端保持一致
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-        "path": "/autumn/"       //注意：和Nginx中配置一致，两个斜杠不能省略
+        "path": "/video/"       #注意：和Nginx中配置一致，两个斜杠不能省略
         }
       }
     }
@@ -286,6 +293,29 @@ vi /etc/v2ray/config.json
 ## 客户端配置
 
 ![image-20200228010334845](https://github.com/AutKevin/autumn/blob/master/VPN/centOS+Shadowsocks/v2ray/v2ray+ws+tls+nginx+cdn%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png?raw=true)
+
+## 问题
+配置好https://域名可访问,但是v2ray连接不上去.
+查看nginx日志
+
+```bash
+lsof -p 进程ID|grep log
+
+#查看error日志
+tail -f /var/log/nginx/error.log
+
+#查看access日志
+tail -f /var/log/nginx/access.log
+```
+error日志
+connect() to 127.0.0.1:10000 failed (13: Permission denied) while connecting to upstream
+权限被拒绝
+
+access日志
+"GET /video/ HTTP/1.1" 502 173 "-" "Go-http-client/1.1" "-"
+返回Http状态为502,表示上游服务器接收到无效的响应
+
+经查阅,发现是selinux没,关闭后即可代理
 
 ### Xshell使用代理连接被封的VPS
 开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.

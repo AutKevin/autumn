@@ -1,3 +1,17 @@
+## SSTap和SocksCap64简介
+
+### SSTap
+SSTap全称SOCKSTap, 是一款利用虚拟网卡技术在网络层实现的代理工具。SSTap能在网络层拦截所有连接并转发给HTTP、SOCKS4/5、Shadowsocks、ShadowsocksR代理。
+而无需对被代理的应用程序做任何修改或设置。它能同时转发TCP、UDP数据包。
+
+### SocksCap64
+SocksCap64在功能上和proxifier差不多，都可以指定应用走Socks代理，无论那个应用程序是否支持。
+SocksCap64和vpn的区别是，vpn一旦连接，就会所有应用程序掉线重练，而SocksCap64只有指定的应用程序需要重练。同时这个软件也支持UDP，对于玩游戏的非常合适！
+SocksCap64是通过钩子来达到让指定软件/游戏走代理的，在某些软件/游戏中可能会不可用，甚至部分游戏会有封禁风险（当成外挂之类的）
+
+### 区别
+SSTap通过配置路由规则，根据目标服务器IP选择是否代理。SocksCap64直接选择本机的应用程序进行代理。
+
 ## SSTap全局代理
 
 sstap不同于v2ray客户端和ssr客户端，sstap可以实现整个电脑的代理，不仅仅是网页的代理。
