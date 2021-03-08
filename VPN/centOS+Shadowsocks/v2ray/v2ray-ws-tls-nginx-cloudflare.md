@@ -271,6 +271,8 @@ vi /etc/v2ray/config.json
 2.服务器生成证书，.crt和.key尽量和之前的一致，这样不用配置nginx.conf的证书路径了。
 
 ```bash
+#域名不够可以用一个域名的多个三级域名、可以绑定多个服务器IP
+~/.acme.sh/acme.sh --issue -d mydomain.me --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d mydomain.me --fullchainpath /etc/crt/autumn.crt --keypath /etc/crt/autumn.key --ecc
 ```
 
@@ -286,9 +288,13 @@ vi /etc/v2ray/config.json
 
 要想使用cdn，需要在https://dash.cloudflare.com/uuid/mydomain.me/dns中配置域名和服务器IP，以便域名可以使用cdn；配置完毕后复制页面上NS（nameserver），例如elsa.ns.cloudflare.com、 javier.ns.cloudflare.com。
 
+还要配置SSL/TLS中的加密连接部分，https://dash.cloudflare.com/uuid/mydomain.me/ssl-tls，因为服务器配置了证书，所以一定要用full格式的，两端都加密。
+
 5.登录域名供应商的账户
 
 停用服务商自己的nameserver，使用自定义**Nameservers**，以便将解析托管给Cloudflare。
+
+6.重启nginx
 
 ## 客户端配置
 
