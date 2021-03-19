@@ -146,7 +146,7 @@ vi /etc/v2ray/config.json
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-        "path": "/autumn/"       //注意：这里也改成和nginx一致的path，2条斜杠别漏了
+        "path": "/video/"       //注意：这里也改成和nginx一致的path，2条斜杠别漏了
         }
       }
     }
@@ -229,7 +229,7 @@ vi /etc/v2ray/config.json
 		"streamSettings": {
 			"network": "ws",
 			"wsSettings": {
-				"path": "/autumn/" //注意：这里改成和nginx一致，2条斜杠别漏了
+				"path": "/video/" //注意：这里改成和nginx一致，2条斜杠别漏了
 			}
 		}
 	}],
@@ -314,34 +314,54 @@ vi /etc/v2ray/config.json
 
 ## 问题
 配置好https://域名可访问,但是v2ray连接不上去.
-查看nginx日志
+查看nginx和v2ray日志
 
 ```bash
 #查找服务的日志
 lsof -p 进程ID|grep log
 
 #查看nginx的error日志
+#104: Connection reset by peer连接重置是正常情况
 tail -f /var/log/nginx/error.log
 
 #查看nginx的access日志
+#代理成功后连接时会带有101状态码(Switching Protocols，切换协议)
+#成功示例: "GET /video/ HTTP/1.1" 101 0 "-" "Go-http-client/1.1"
 tail -f /var/log/nginx/access.log
 
-#查看v2ray日志
+#查看v2ray的error日志
+#v2ray.com/core/app/proxyman/inbound: connection ends连接关闭时正常情况
 tail -f /var/log/v2ray/error.log
+
+#查看v2ray的access日志
+#代理成功后,nginx会把请求转发给v2ray
+#成功示例: tcp:61.YOUR.IP.ADDRRESS:30862 accepted tcp:www.baidu.com:443
 tail -f /var/log/v2ray/access.log
 
 ```
+### Nginx的access日志响应502
+
 error日志
 connect() to 127.0.0.1:10000 failed (13: Permission denied) while connecting to upstream
 权限被拒绝
 
 access日志
 "GET /video/ HTTP/1.1" 502 173 "-" "Go-http-client/1.1" "-"
-返回Http状态为502,表示上游服务器接收到无效的响应
+返回Http状态为502(而非正常的101切换协议状态码),表示上游服务器接收到无效的响应
 
 经查阅,发现是selinux没,关闭后即可代理
 
-### Xshell使用代理连接被封的VPS
+### 用户ID错误
+
+v2ray/access.log显示
+
+```bash
+rejected  v2ray.com/core/proxy/vmess/encoding: invalid user
+```
+
+
+
+## Xshell使用代理连接被封的VPS
 开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.
 xshell -> 属性 -> 代理 -> 添加代理服务器
 
