@@ -359,7 +359,19 @@ v2ray/access.log显示
 rejected  v2ray.com/core/proxy/vmess/encoding: invalid user
 ```
 
+### Nginx正常V2ray异常
 
+nginx/access.log显示502(上游服务器已关闭 或者 上游服务器和网关/代理在使用不统一的协议交换数据 )
+
+```bash
+"GET /video/ HTTP/1.1" 502 173 "-" "Go-http-client/1.1"
+```
+
+nginx/error.log显示连接不上v2ray的端口
+
+```bash
+connect() to 127.0.0.1:10000 failed (13: Permission denied) while connecting to upstream, client: 108.162.215.87, server: aeolian.cf, request: "GET /video/ HTTP/1.1", upstream: "http://127.0.0.1:10000/video/", host: "yourdomain.com"
+```
 
 ## Xshell使用代理连接被封的VPS
 开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.
