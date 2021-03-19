@@ -206,7 +206,193 @@ vi /etc/v2ray/config.json
 }
 ```
 
+### 完整配置
+
+```json
+{
+    "log": {
+        "access": "/var/log/v2ray/access.log", 
+        "error": "/var/log/v2ray/error.log", 
+        "loglevel": "warning"
+    }, 
+    "inbounds": [
+        {
+            "port": 10000,
+            "listen": "127.0.0.1", 
+            "protocol": "vmess", 
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3c3c3136-d3a2-4d13-b84a-6516631ddf6f", 
+                        "level": 1, 
+                        "alterId": 233
+                    }
+                ]
+            }, 
+            "streamSettings": {
+                "network": "ws", 
+                "wsSettings": {
+                    "path": "/video/"
+                }
+            }
+        }
+    ], 
+    "inboundDetour": [
+        {
+            "port": 39295, 
+            "protocol": "vmess", 
+            "settings": {
+                "clients": [
+                    {
+                        "id": "fe49251d-e720-4e22-91c3-f51fdaa369c8", 
+                        "alterId": 16, 
+                        "email": "autumn@v2ray.com"
+                    }
+                ]
+            }
+        }, 
+        {
+            "port": 31995, 
+            "protocol": "vmess", 
+            "settings": {
+                "clients": [
+                    {
+                        "id": "e5fa7286-ad4f-40b8-a795-d34ef45fa6e3", 
+                        "alterId": 16, 
+                        "email": "aeolian@v2ray.com"
+                    }
+                ]
+            }, 
+            "streamSettings": {
+                "network": "kcp", 
+                "kcpSettings": {
+                    "header": {
+                        "type": "none"
+                    }
+                }
+            }, 
+            "sniffing": {
+                "enabled": true, 
+                "destOverride": [
+                    "http", 
+                    "tls"
+                ]
+            }
+        }, 
+        {
+            "port": 39238, 
+            "protocol": "vmess", 
+            "settings": {
+                "clients": [
+                    {
+                        "id": "d021e574-d2bb-40ec-83d3-ab3568a767ac", 
+                        "level": 1, 
+                        "alterId": 233, 
+                        "email": "first@v2ray.com"
+                    }, 
+                    {
+                        "id": "0073c7f9-2ad0-4892-bb4d-c610bdba3e2f", 
+                        "level": 1, 
+                        "alterId": 16, 
+                        "email": "javaelec@v2ray.com"
+                    }
+                ]
+            }, 
+            "streamSettings": {
+                "network": "kcp", 
+                "kcpSettings": {
+                    "header": {
+                        "type": "none"
+                    }
+                }
+            }, 
+            "sniffing": {
+                "enabled": true, 
+                "destOverride": [
+                    "http", 
+                    "tls"
+                ]
+            }
+        }
+    ], 
+    "outbounds": [
+        {
+            "protocol": "freedom", 
+            "settings": { }
+        }, 
+        {
+            "protocol": "blackhole", 
+            "settings": { }, 
+            "tag": "blocked"
+        }, 
+        {
+            "protocol": "freedom", 
+            "settings": { }, 
+            "tag": "direct"
+        }, 
+        {
+            "protocol": "mtproto", 
+            "settings": { }, 
+            "tag": "tg-out"
+        }
+    ], 
+    "dns": {
+        "server": [
+            "1.1.1.1", 
+            "1.0.0.1", 
+            "8.8.8.8", 
+            "8.8.4.4", 
+            "localhost"
+        ]
+    }, 
+    "routing": {
+        "domainStrategy": "IPOnDemand", 
+        "rules": [
+            {
+                "type": "field", 
+                "ip": [
+                    "0.0.0.0/8", 
+                    "10.0.0.0/8", 
+                    "100.64.0.0/10", 
+                    "127.0.0.0/8", 
+                    "169.254.0.0/16", 
+                    "172.16.0.0/12", 
+                    "192.0.0.0/24", 
+                    "192.0.2.0/24", 
+                    "192.168.0.0/16", 
+                    "198.18.0.0/15", 
+                    "198.51.100.0/24", 
+                    "203.0.113.0/24", 
+                    "::1/128", 
+                    "fc00::/7", 
+                    "fe80::/10"
+                ], 
+                "outboundTag": "blocked"
+            }, 
+            {
+                "type": "field", 
+                "inboundTag": [
+                    "tg-in"
+                ], 
+                "outboundTag": "tg-out"
+            }
+        ]
+    }, 
+    "transport": {
+        "kcpSettings": {
+            "uplinkCapacity": 100, 
+            "downlinkCapacity": 100, 
+            "congestion": true
+        }, 
+        "sockopt": {
+            "tcpFastOpen": true
+        }
+    }
+}
+```
+
 ### 两个vps的v2ray相连
+
 服务器的v2ray的inbound端被nginx反向代理了,inbound使用ws的方式和nginx通信,v2ray的outbound端连接到另一个vps的inbound端
 ```json
 {
@@ -373,7 +559,25 @@ nginx/error.log显示连接不上v2ray的端口
 connect() to 127.0.0.1:10000 failed (13: Permission denied) while connecting to upstream, client: 108.162.215.87, server: aeolian.cf, request: "GET /video/ HTTP/1.1", upstream: "http://127.0.0.1:10000/video/", host: "yourdomain.com"
 ```
 
+### 502异常
+
+nginx/access.log显示502
+
+使用以下指令查看selinux配置：
+
+```bash
+getsebool httpd_can_network_connect
+#httpd_can_network_connect --> off
+```
+
+SELinux配置将httpd网络连接关闭，所以很自然将其启用即可：
+
+```bash
+setsebool -P httpd_can_network_connect 1
+```
+
 ## Xshell使用代理连接被封的VPS
+
 开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.
 xshell -> 属性 -> 代理 -> 添加代理服务器
 
