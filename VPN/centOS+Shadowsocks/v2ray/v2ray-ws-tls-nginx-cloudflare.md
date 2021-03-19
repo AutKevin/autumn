@@ -1,4 +1,18 @@
-## 前提
+## 环境
+
+### CentOS
+
+```bash
+cat /etc/redhat-release
+```
+CentOS Linux release 7.7.1908 (Core)
+
+### nginx
+
+```bash
+nginx -v
+```
+nginx version: nginx/1.16.0
 
 #### 申请域名：
 
