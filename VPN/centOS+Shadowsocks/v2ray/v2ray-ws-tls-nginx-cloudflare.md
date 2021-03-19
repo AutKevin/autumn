@@ -317,13 +317,19 @@ vi /etc/v2ray/config.json
 查看nginx日志
 
 ```bash
+#查找服务的日志
 lsof -p 进程ID|grep log
 
-#查看error日志
+#查看nginx的error日志
 tail -f /var/log/nginx/error.log
 
-#查看access日志
+#查看nginx的access日志
 tail -f /var/log/nginx/access.log
+
+#查看v2ray日志
+tail -f /var/log/v2ray/error.log
+tail -f /var/log/v2ray/access.log
+
 ```
 error日志
 connect() to 127.0.0.1:10000 failed (13: Permission denied) while connecting to upstream
