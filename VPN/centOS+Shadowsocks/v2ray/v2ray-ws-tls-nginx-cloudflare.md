@@ -4,8 +4,6 @@
 
 https://www.freenom.com/
 
-https://www.namecheap.com/
-
 #### cdn解析域名：
 
 https://www.cloudflare.com
