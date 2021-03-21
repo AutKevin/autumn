@@ -11,6 +11,10 @@ SSTap的进阶版，和SSTAP一样支持代理（多了v2ray、Trojan）、支�
 
 NETCH=V2ray+SSTAP，netch直接使用VMess+[TUN/TAP] 绕过局域网和中国大陆可实现V2ray+SSTap同样的功能。
 
+![image-20200726100359585](../SSTap&NETCH/images/image_2021-03-21_20-46-10.png)
+
+
+
 
 
 ## SSTap
