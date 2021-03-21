@@ -11,6 +11,8 @@ SSTap的进阶版，和SSTAP一样支持代理（多了v2ray、Trojan）、支�
 
 NETCH=V2ray+SSTAP，netch直接使用VMess+[TUN/TAP] 绕过局域网和中国大陆可实现V2ray+SSTap同样的功能。
 
+
+
 ## SSTap
 
 ### SSTap简介
@@ -31,7 +33,7 @@ sstap不同于v2ray客户端和ssr客户端，sstap可以实现整个电脑的�
 
 sstap和其他不一样的是，会在网络中新建一个SSTAP虚拟网卡，从而实现全软件代理（其他客户端仅仅用端口）。
 
-![image-20200726100359585](https://github.com/AutKevin/autumn/blob/master/VPN/SSTap/images/image-20200726100359585.png)
+![image-20200726100359585](../SSTap&NETCH/images/image-20200726100359585.png)
 
 全局：代理所有软件
 
@@ -48,13 +50,13 @@ sstap和其他不一样的是，会在网络中新建一个SSTAP虚拟网卡，�
 1. 启动v2ray并调试通
 2. 点击参数设置，查看本地端口并开启UDP
 
-![image-20200726100921268](https://github.com/AutKevin/autumn/blob/master/VPN/SSTap/images/image-20200726100921268.png)
+![image-20200726100921268](../SSTap&NETCH/images/image-20200726100921268.png)
 
 3.配置SSTap
 
-![image-20200726101209631](https://github.com/AutKevin/autumn/blob/master/VPN/SSTap/images/image-20200726101209631.png)
+![image-20200726101209631](../SSTap&NETCH/images/image-20200726101209631.png)
 
 4.测试并连接，测试TCP和UDP都通后。然后点击连接。
 
-![image-20200726101305739](https://github.com/AutKevin/autumn/blob/master/VPN/SSTap/images/image-20200726101305739.png)
+![image-20200726101305739](../SSTap&NETCH/images/image-20200726101305739.png)
 
