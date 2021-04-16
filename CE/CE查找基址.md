@@ -1,5 +1,9 @@
 ## CE
 
+### 官网下载
+
+https://www.cheatengine.org/downloads.php
+
 ### 查找精确值
 
 先根据阳光值去First Scan，然后消耗游戏阳光值Next Scan，最后筛选出阳光值地址。
