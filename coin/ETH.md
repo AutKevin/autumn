@@ -12,7 +12,7 @@ asia1.ethermine.org:14444
 
 ## 挖矿
 
-[lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases)
+### [lolMiner](https://github.com/Lolliedieb/lolMiner-releases/releases)
 
 修改mine_eth_4G.bat文件（如果内存小于4G修改mine_eth.bat），修改矿池POOL=IP:端口，WALLET=钱包地址.矿工名。
 
@@ -41,6 +41,10 @@ if %ERRORLEVEL% == 42 (
 
 pause
 ```
+
+### [teamredminer](https://github.com/todxx/teamredminer/releases)
+
+效率比lolminer高。
 
 ## 矿池监控
 
