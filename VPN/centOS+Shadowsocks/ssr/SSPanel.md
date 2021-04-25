@@ -1,4 +1,21 @@
+## 安装宝塔
+
+确保机器没有安装Apache/Nginx/php/MySQL等软件。
+
+```bash
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
+```
+
+安装完后会自动显示url和用户名密码，一定要记录下来用户名和密码。
+
+外网面板地址: http://xx.xx.xx.xx:8888/b335dfeb
+内网面板地址: http://10.10.10.188:8888/b335dfeb
+username: ****
+password: ****
+
 ## LNMP环境
+
+在宝塔面板选择LNMP环境
 
 - Nginx Stable - 最新版（最新稳定版版本号，比如1.16）
 - MySQL - MySQL-8.0
@@ -8,18 +25,18 @@
 
 ## 配置 PHP
 
-软件商店里找到 PHP， 点击设置 禁用函数一栏删除 `system` `proc_open` `proc_get_status` `putenv`。 
+宝塔软件商店里找到 已安装的PHP， 点击设置 禁用函数一栏删除 `system` `proc_open` `proc_get_status` `putenv`。 
 
 ## 部署 SSPanel 魔改版
 
 ### 添加网站
 
-输入域名自动生成备注及根目录，设置FTP用户名密码以及数据库用户名密码。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
+输入域名(随便输入***.**)自动生成备注及根目录，设置FTP用户名密码以及Mysql数据库用户名密码。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
 
 ```shell
 cd /www/wwwroot/网站文件夹
-git clone -b master https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
-git config core.filemode false
+git clone -b master https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard   #如果无法下载可以用浏览器下载后上传到/www/wwwroot/网站文件夹下面
+git config core.filemode false   #改变git忽略模式
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
 php composer.phar install
