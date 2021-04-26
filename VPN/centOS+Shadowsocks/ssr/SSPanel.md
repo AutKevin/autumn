@@ -1,3 +1,9 @@
+## 硬件环境
+
+- 1 CPU 以上
+- 个人使用 1G 即可(需要swap)，长期稳定运行建议 2 G 及以上
+- 10 G 硬盘空间及以上
+
 ## 安装宝塔
 
 确保机器没有安装Apache/Nginx/php/MySQL等软件。
@@ -12,6 +18,8 @@ yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_
 内网面板地址: http://10.10.10.188:8888/b335dfeb
 username: ****
 password: ****
+
+登录后进入面板设置界面修改用户名和密码。
 
 ## LNMP环境
 
@@ -31,15 +39,20 @@ password: ****
 
 ### 添加网站
 
-输入域名(随便输入***.**)自动生成备注及根目录，设置FTP用户名密码以及Mysql数据库用户名密码。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
+输入域名(随便输入)自动生成备注及根目录，设置**FTP用户名密码**以及**Mysql数据库用户名密码**。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
 
 ```shell
 cd /www/wwwroot/网站文件夹
-git clone -b master https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard   #如果无法下载可以用浏览器下载后上传到/www/wwwroot/网站文件夹下面
+#一定不可以网页上下载（<10M），无法下载可以本地挂代理clone后上传到/www/wwwroot/网站文件夹下面（100M左右）
+#一定要用dev分支，master分支已停止更新
+git clone -b dev https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard   
 git config core.filemode false   #改变git忽略模式
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
-php composer.phar install
+#会Installing很多包，如果是master会失败
+#需要删除shell_exec()禁用函数
+#有些github上的资源不稳定，需要多试几次或者挂代理
+php composer.phar install   
 cd ../
 chmod -R 755 文件夹/
 chown -R www:www 文件夹/
@@ -60,15 +73,16 @@ location / {
 
 ### 导入初始数据库
 
-菜单的 **数据库** 按钮，找到你刚 Link 的数据库，点击导入。导入界面会出现 `glzjin_all.sql`，直接导入。
+菜单的 **数据库** 按钮，**添加一个数据库**，然后点击导入按钮。导入界面会出现 `glzjin_all.sql`，直接导入。
 
-### 配置网站程序
+### 配置网站数据库连接
 
-修改db_database,mukey等
+修改db_database、mukey等
 ```php
 cd /www/wwwroot/文件夹/
 cp config/.config.example.php config/.config.php
-nano config/.config.php
+cp config/appprofile.example.php config/appprofile.php
+vi config/.config.php
 ```
 $System_Config['db_host'] = 'localhost';						//数据库地址
 $System_Config['db_database'] = 'dbname';						//数据库名
@@ -77,16 +91,18 @@ $System_Config['db_password'] = '123456'
 
 ### 创建管理员并同步用户
 ```shell
+cd /www/wwwroot/文件夹/
 #创建管理员,会要求你输入邮箱和密码
-php xcat createAdmin
-#同步用户
-php xcat syncusers
-#下载IP解析库
-php xcat initQQWry
+#如果创建管理员出错请检查 config/.config.php 中的数据库连接信息
+php xcat User createAdmin
 #重置流量
-php xcat resetTraffic
+php xcat User resetTraffic
+#同步用户
+php xcat User syncusers
+#下载IP解析库
+php xcat Tool initQQWry
 #下载工具包到服务器
-php xcat initdownload
+php xcat Tool initdownload
 ```
 管理員和普通注冊用戶用的一個登錄頁面，只不過管理員登錄后，最後main有一個管理面板。
 
@@ -142,3 +158,8 @@ $ vim /etc/fstab
 $ free -m
 ```
 
+
+
+参考：
+
+[https://blog.sprov.xyz/2020/06/06/sspanel-uim-v2ray-trojan/#%E5%89%8D%E7%AB%AF_VPS_%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82](https://blog.sprov.xyz/2020/06/06/sspanel-uim-v2ray-trojan/#前端_VPS_配置要求)
