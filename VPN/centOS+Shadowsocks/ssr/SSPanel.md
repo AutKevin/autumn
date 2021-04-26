@@ -39,10 +39,10 @@ git clone -b master https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.gi
 git config core.filemode false   #改变git忽略模式
 wget https://getcomposer.org/installer -O composer.phar
 php composer.phar
-php composer.phar install
+php composer.phar install     #需要在PHP设置中禁用函数删除exec函数
 cd ../
-chmod -R 755 文件夹/
-chown -R www:www 文件夹/
+chmod -R 755 文件夹/*
+chown -R www:www 文件夹/*
 ln -s /www/wwwroot/文件夹/sql/glzjin_all.sql /www/backup/database/
 ```
 
