@@ -1,3 +1,7 @@
+## SSPanel Uim
+
+官网：https://github.com/Anankke/SSPanel-Uim
+
 ## 硬件环境
 
 - 1 CPU 以上
@@ -127,7 +131,113 @@ crontab -e */1 * * * * php /www/wwwroot/文件夹/xcat syncvpn
 crontab -e */1 * * * * php -n /www/wwwroot/文件夹/xcat syncnas
 ```
 
+### V2ray对接
+
+#### 一键安装
+
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/sprov065/soga/master/install.sh)
+```
+
+#### 同步时间（重要）
+
+```
+yum install -y ntp
+systemctl enable ntpd
+ntpdate -q 0.rhel.pool.ntp.org
+systemctl restart ntpd
+```
+
+#### 配置节点
+
+前端配置ws+tls，若不用CDN，可以去掉host
+
+ip;80;2;ws;;path=/xxx|server=域名|host=CDN域名
+
+#### 配置soga
+
+```
+# 输出当前配置文件内容
+soga config
+
+# 自动对配置文件进行配置，一行可填写任意数量的配置信息，示例：
+soga config type=sspanel-uim server_type=v2ray
+```
+
+配置文件位置在 **/etc/soga/soga.conf**，内容如下
+
+```
+type=sspanel-uim                             # 必填这个
+server_type=v2ray                            # 必填这个
+api=webapi                                   # webapi 或 db，表示 webapi 对接或数据库对接
+
+# webapi 对接
+webapi_url=https://xxx.com/                  # webapi url，填写面板主页地址
+webapi_key=xxxx                              # webapi 密钥，sspanel 配置中的 mukey
+
+# 数据库对接
+db_host=db.xxx.com                           # 数据库地址
+db_port=3306                                 # 数据库端口
+db_name=name                                 # 数据库名
+db_user=root                                 # 数据库用户名
+db_password=asdasdasd                        # 数据库密码
+
+node_id=1                                    # 节点id
+soga_key=                                    # 授权key，社区版无需填写，最多支持88用户，商业版无限制
+user_conn_limit=0                            # 限制用户IP数，0代表无限制，默认会优先使用面板设置的限制IP数，在部分旧版面板下可能会获取不到，则使用这个值
+
+force_close_ssl=false                        # 设为true可强制关闭tls，即使前端开启tls，soga也不会开启tls，方便用户自行使用nginx、caddy等反代
+
+default_dns=8.8.8.8,1.1.1.1                  # 配置默认dns，可在此配置流媒体解锁的dns，以逗号分隔
+dns_cache_time=10                            # 自定义dns缓存时间，单位分钟，仅在设置了default_dns时有效，或者v2board设置了dns规则时也有效
+
+v2ray_reduce_memory=false                    # VMess 下有效，在已降低内存的基础上进一步降低内存使用，启用后客户端时间误差要求不超过15秒
+
+proxy_protocol=false                         # 具体请参看中转获取真实 IP 教程
+v2ray_fallback_addr=                         # v2ray fallback 地址，仅 tcp+tls 可使用
+v2ray_fallback_port=0                        # v2ray fallback 端口，仅 tcp+tls 可使用
+auto_update=false                            # soga 自动更新，只会检测稳定版
+
+vless=false                                  # 设为 true 可切换为 VLESS 协议，目前 VLESS 协议未完全开发完成，仅供测试
+vless_flow=                                  # vless 流控，具体请参考 v2ray 官方文档
+xtls=false                                   # 设为 true 即可开启 xtls，仅支持 tcp + tls 时开启
+```
+
+#### 配置证书
+
+若未开启 tls，则无需配置证书
+
+1. 手动指定证书
+
+```
+cert_file=                                   # 手动指定证书路径
+key_file=                                    # 手动指定密钥路径
+```
+
+2. http 模式自动申请证书
+
+```
+cert_domain=xxx.com                          # 申请证书的域名
+cert_mode=http                               # 申请模式
+cert_key_length=ec-256                       # 留空则申请RSA证书，填写ec-256或ec-384则申请ECC证书
+```
+
+3. dns 模式自动申请证书
+
+   CloudFlare 配置
+
+```
+cert_domain=xxx.com                          # 申请证书的域名
+cert_mode=dns                                # 申请模式
+cert_key_length=ec-256                       # 留空则申请RSA证书，填写ec-256或ec-384则申请ECC证书
+dns_provider=dns_cf                          # DNS 提供商
+
+DNS_CF_Email=xxx@xx.com                      # CF 邮箱
+DNS_CF_Key=xxxxx                             # CF API Global Key
+```
+
 ### SSR后端一键安装
+
 webapi: ip、mukey(config/.config.php)、结点ID 进行配置SSR.
 
 database: ip、数据库的用户名、密码、结点ID 进行配置SSR.
