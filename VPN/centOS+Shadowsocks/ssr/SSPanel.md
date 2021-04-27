@@ -39,12 +39,13 @@ password: ****
 
 ### 添加网站
 
-输入域名(随便输入)自动生成备注及根目录，设置**FTP用户名密码**以及**Mysql数据库用户名密码**。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
+输入域名(如果**没有域名**输入**IP:port**)自动生成备注及根目录，设置**FTP用户名密码**以及**Mysql数据库用户名密码**。生成网站后会自动在/www/wwwroot/下面生成网站文件夹.
 
 ```shell
 cd /www/wwwroot/网站文件夹
 #一定不可以网页上下载（<10M），无法下载可以本地挂代理clone后上传到/www/wwwroot/网站文件夹下面（100M左右）
 #一定要用dev分支，master分支已停止更新
+#yum install git
 git clone -b dev https://github.com/Anankke/SSPanel-Uim.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard   
 git config core.filemode false   #改变git忽略模式
 wget https://getcomposer.org/installer -O composer.phar
@@ -158,7 +159,11 @@ $ vim /etc/fstab
 $ free -m
 ```
 
+## 出现问题
 
+### 没有找到站点
+
+显示没有站点的界面，检查网站的域名有没有绑定（没有域名用ip:端口）
 
 参考：
 
