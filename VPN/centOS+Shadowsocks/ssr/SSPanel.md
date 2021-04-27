@@ -165,6 +165,4 @@ $ free -m
 
 显示没有站点的界面，检查网站的域名有没有绑定（没有域名用ip:端口）
 
-参考：
-
-[https://blog.sprov.xyz/2020/06/06/sspanel-uim-v2ray-trojan/#%E5%89%8D%E7%AB%AF_VPS_%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82](https://blog.sprov.xyz/2020/06/06/sspanel-uim-v2ray-trojan/#前端_VPS_配置要求)
+端口不能为80或者443
