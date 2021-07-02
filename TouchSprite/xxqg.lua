@@ -1,6 +1,6 @@
 require("TSLib")
 require("common")
-
+-- 分辨率: 720 x 1280 dpi: 320
 init(0)  --初始化(0,0)坐标
 mSleep(3*1000)  --睡眠三秒,防止坐标没初始化好
 nLog('初始化成功')
