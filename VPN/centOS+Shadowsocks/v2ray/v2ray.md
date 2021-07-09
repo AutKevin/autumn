@@ -149,13 +149,32 @@ chmod +x bbr.sh
 
 sysctl net.ipv4.tcp_available_congestion_control
 
-
 ## 客户端
 
-电脑版
-https://github.com/2dust/v2rayN/releases/tag/2.50
+### **V2ray官方内核** 
 
-手机版
+https://github.com/v2ray/v2ray-core/releases
+
+[V2ray官方内核](https://github.com/v2fly/v2ray-core/releases)解压后如下，内核可以直接使用，但是没有GUI界面，以命令行方式启动。
+
+![image-20210709150556504](v2ray/image-20210709150556504.png)
+
+### 基于内核的GUI软件
+
+#### 电脑版
+
+V2rayN
+
+https://github.com/2dust/v2rayN/releases/tag/2.50，下载 [v2rayN-Core.zip](https://github.com/2dust/v2rayN/releases/download/4.20/v2rayN-Core.zip)（包含V2ray-Core内核），[v2rayN.zip](https://github.com/2dust/v2rayN/releases/download/4.20/v2rayN.zip)不包含内核（需要自己下载内核放进去）。
+
+ Qv2ray
+
+ https://github.com/Qv2ray/Qv2ray/releases，使用 Qt 编写的 v2ray 跨平台 GUI （MacOS, Windows, Linux），Qv2ray不包含v2ray-core内核，需要自己去官网下载内核放进去然后首选项配置。
+
+#### 手机版
+
+V2rayNG
+
 https://github.com/2dust/v2rayNG/releases
 
 ## 局域网内共享
