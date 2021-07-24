@@ -576,6 +576,25 @@ SELinux配置将httpd网络连接关闭，所以很自然将其启用即可：
 setsebool -P httpd_can_network_connect 1
 ```
 
+### potentially invalid user: a non VMessAEAD connection is received
+
+突然连不上v2ray，tail -f /var/log/v2ray/error.log查看日志后发现如下错误
+
+[Warning] github.com/v2fly/v2ray-core/v4/proxy/vmess/encoding: Critical Warning: potentially invalid user: a non VMessAEAD connection is received. From 2022 Jan 1st, this kind of connection will be rejected by default. You should update or replace your client software now.
+
+```bash
+#升级v2ray核心
+v2ray update
+
+#重启v2ray 
+v2ray restart
+
+#重启nginx
+systemctl restart nginx
+```
+
+再次尝试即可
+
 ## Xshell使用代理连接被封的VPS
 
 开启软件后浏览器默认设置代理,如果其他软件需要使用代理需要软件支持代理.
